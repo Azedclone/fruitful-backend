@@ -21,12 +21,10 @@ public class Account
     [BsonElement("password")]
     [Required]
     [StringLength(100, ErrorMessage = "Password must be strong and at least 6 characters long.", MinimumLength = 6)]
-    public string Password { get; set; } 
+    public string Password { get; set; }
 
-    [BsonElement("image")]
-    [Url]
-    public string Image { get; set; }
-    
+    [BsonElement("image")] [Url] public string? Image { get; set; }
+
     [BsonElement("phone")]
     [Phone(ErrorMessage = "Invalid phone number format.")]
     public string Phone { get; set; }
@@ -48,10 +46,6 @@ public class Account
     public DateTime? LastLogin { get; set; }
 
     [BsonElement("is_active")] public bool IsActive { get; set; } = true; // Accounts are active by default
-
-    [BsonElement("email")]
-    [EmailAddress(ErrorMessage = "Invalid email format.")]
-    public string? Email { get; set; } // Optional email field
 
     // Override ToString for better debug display
     public override string ToString()

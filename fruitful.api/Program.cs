@@ -1,3 +1,6 @@
+using fruitful.bll.Repositories;
+using fruitful.bll.Services;
+using Fruitful.BLL.Services;
 using fruitful.dal.Models;
 using MongoDB.Driver;
 
@@ -11,6 +14,12 @@ builder.Services.AddSingleton<IMongoDatabase>(_ =>
     var client = new MongoClient(settings.ConnectionString);
     return client.GetDatabase(settings.DbName);
 });
+
+
+builder.Services.AddSingleton<IAccountRepository, AccountRepository>();
+builder.Services.AddSingleton<EncryptionService>();
+builder.Services.AddSingleton<JWTService>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
