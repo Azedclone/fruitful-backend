@@ -17,6 +17,8 @@ builder.Services.AddSingleton<IMongoDatabase>(_ =>
 
 
 builder.Services.AddSingleton<IAccountRepository, AccountRepository>();
+builder.Services.AddSingleton<ICategoryRepository, CategoryRepository>();
+builder.Services.AddSingleton<IProductRepository, ProductRepository>();
 builder.Services.AddSingleton<EncryptionService>();
 builder.Services.AddSingleton<JWTService>();
 

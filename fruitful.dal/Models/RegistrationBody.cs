@@ -11,6 +11,10 @@ public class RegistrationBody
     [Required]
     [StringLength(100, ErrorMessage = "Password must be strong and at least 6 characters long.", MinimumLength = 6)]
     public string Password { get; set; }
+    
+    [Required]
+    [StringLength(50, MinimumLength = 4, ErrorMessage = "Name must be between 4 and 50 characters.")]
+    public string Name { get; set; }
 
     [Required]
     [Phone(ErrorMessage = "Invalid phone number format.")]

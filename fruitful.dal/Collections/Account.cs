@@ -16,6 +16,11 @@ public class Account
     [Required]
     [StringLength(50, MinimumLength = 4, ErrorMessage = "Username must be between 4 and 50 characters.")]
     public string Username { get; set; }
+    
+    [BsonElement("name")]
+    [Required]
+    [StringLength(50, MinimumLength = 4, ErrorMessage = "Name must be between 4 and 50 characters.")]
+    public string Name { get; set; }
 
     [JsonIgnore] // Keep password out of any serialized responses
     [BsonElement("password")]

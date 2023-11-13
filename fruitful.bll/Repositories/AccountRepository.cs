@@ -36,6 +36,7 @@ public class AccountRepository : IAccountRepository
         {
             Username = body.Username,
             Password = _encryptionService.EncryptPassword(body.Password),
+            Name = body.Name,
             Phone = body.Phone,
             Address = body.Address,
             Dob = body.Dob
