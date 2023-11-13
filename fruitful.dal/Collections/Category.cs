@@ -8,7 +8,7 @@ public class Category
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public ObjectId Id { get; set; }
+    public string Id { get; set; }
 
     [BsonElement("name")]
     [Required(ErrorMessage = "Category name is required.")]

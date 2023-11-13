@@ -10,7 +10,7 @@ public class Account
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public ObjectId Id { get; set; }
+    public string Id { get; set; }
 
     [BsonElement("username")]
     [Required]
@@ -35,15 +35,11 @@ public class Account
     [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
     public DateTime? Dob { get; set; }
 
-    [BsonElement("role")] [Required] public string Role { get; set; } = "USER"; // Default role is USER
+    [BsonElement("role")] [Required] public string Role { get; set; } = "EMPLOYEE"; // Default role is USER
 
     [BsonElement("created_at")]
     [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-
-    [BsonElement("last_login")]
-    [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
-    public DateTime? LastLogin { get; set; }
 
     [BsonElement("is_active")] public bool IsActive { get; set; } = true; // Accounts are active by default
 

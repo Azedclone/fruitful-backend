@@ -11,7 +11,7 @@ public class Product
 
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public ObjectId Id { get; set; }
+    public string Id { get; set; }
 
     [BsonElement("name")]
     [Required]
@@ -34,11 +34,11 @@ public class Product
 
     [BsonElement("category_id")]
     [BsonRepresentation(BsonType.ObjectId)]
-    public ObjectId CategoryId { get; set; }
+    public string CategoryId { get; set; }
 
     [BsonElement("image")] [Url] public string Image { get; set; }
 
-    [BsonElement("created_at")] public DateTime CreatedAt { get; set; } = DateTime.Now;
+    [BsonElement("created_at")] public static DateTime CreatedAt { get; } = DateTime.Now;
 
-    [BsonElement("expired_at")] public DateTime ExpiredAt { get; set; }
+    [BsonElement("expired_at")] public DateTime ExpiredAt { get; } = CreatedAt.AddDays(14);
 }

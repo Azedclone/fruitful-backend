@@ -7,10 +7,17 @@ public class Order
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public ObjectId Id { get; set; }
+    public string Id { get; set; }
 
-    [BsonElement("account_id")] public ObjectId AccountId { get; set; }
-    [BsonElement("created_at")] public DateTime CreatedAt { get; set; } = DateTime.Now;
+    [BsonElement("account_id")] public string AccountId { get; set; }
+
+    [BsonElement("created_at")]
+    [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
+    public DateTime CreatedAt { get; } = DateTime.Now;
+
+    [BsonElement("items")] 
+    public List<OrderItem> Items { get; set; } = new List<OrderItem>();
+
     [BsonElement("total_price")] public decimal TotalPrice { get; set; }
     [BsonElement("delivery_address")] public string DeliveryAddress { get; set; }
 }

@@ -1,4 +1,5 @@
-﻿using fruitful.bll.Repositories;
+﻿using fruitful.bll.Exceptions;
+using fruitful.bll.Repositories;
 using Fruitful.BLL.Services;
 using fruitful.dal.Collections;
 using fruitful.dal.Models;
@@ -43,6 +44,28 @@ public class AuthController : ControllerBase
                 Success = false,
                 Data = null
             });
+        }
+    }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginBody body)
+    {
+        try
+        {
+            var result = await _accountRepository.Login(body);
+            return Ok(new { result, token = _jwtService.GenerateToken(result.Data) });
+        }
+        catch (Exception e)
+        {
+            return e switch
+            {
+                AccountNotFoundException => NotFound(new OperationResult<object>() { Success = false, Data = null }),
+                InvalidPasswordException => Unauthorized(new OperationResult<object>()
+                {
+                    Success = false, Data = null
+                }),
+                _ => StatusCode(500, new OperationResult<object>() { Success = false, Data = null })
+            };
         }
     }
 }
